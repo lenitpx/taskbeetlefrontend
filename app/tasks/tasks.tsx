@@ -59,7 +59,8 @@ export const Tasks = () => {
 
         await api.post("/api/tasks", {
             description: newDescription,
-            completed: false
+            isComplete: false,
+            isArchived: false,
         });
 
         setNewDescription("");
