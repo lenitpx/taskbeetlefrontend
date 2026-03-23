@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, redirect } from "react-router";
 import api from "../lib/api";
+import { isAuthenticated } from "../lib/auth";
 import { getToken, clearToken } from "../lib/auth";
 import { FaArchive, FaTrashAlt } from "react-icons/fa";
 import { Footer } from "~/components/page_layout/footer";
@@ -11,6 +12,9 @@ import { TodoListWrapper } from "~/components/todo_ui/todoListWrapper";
 import { InfoField } from "~/components/todo_ui/infoField";
 
 export async function loader() {
+    if (!isAuthenticated()) {
+        return redirect("/login");
+    }
     return null;
 }
 
